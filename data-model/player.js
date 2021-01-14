@@ -13,3 +13,5 @@ class Player {
 
     }
 }
+
+// Try giving it a name to further personalize?
