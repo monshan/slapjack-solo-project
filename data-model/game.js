@@ -22,14 +22,16 @@ class Game {
     turn(player) {
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
-        if (this.currentPlayer === this.player1) {
-            this.currentPlayer = this.player2
-        } else {
-            this.currentPlayer = this.player1
-        }
+        this.currentPlayer = this.swapPlayer(player)
     }
 
-    // Fix the slap function in that both the pile is reduced and player.hand contains the object and not an array of the object
+    swapPlayer(thatPlayer) {
+        if (thatPlayer === this.player1) {
+            return this.player2
+        } else {
+            return this.player1
+        }
+    }
 
     slap(player) {
         if (this.pile[0].value === 'jack') {
@@ -39,16 +41,19 @@ class Game {
         } else if (this.pile[0].value === this.pile[2].value) {
             this.validSlap(player)
         } else {
-            console.log('Nice try loser')
+            console.log(`Nice try`)
+            this.swapPlayer(player).hand.push(player.hand.shift())
+            this.shuffle(this.swapPlayer(player).hand)
         }
     }
 
     validSlap(player) {
+        console.log(`${player.name} had a good slap!`)
         for (var i = 0; i < this.pile.length; i++) {
             player.hand.unshift(this.pile[i])
         }
         this.pile.splice(0, this.pile.length)
-        console.log(`${player.name} had a good slap!`)
+        this.currentPlayer = this.swapPlayer(player)
     }
 
     win(player) {
