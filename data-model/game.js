@@ -14,12 +14,9 @@ class Game {
     }
 
     firstDeal() {
-        // shuffle(this.pile)
+        this.shuffle()
         this.player1.hand = this.pile.splice(0, 26)
         this.player2.hand = this.pile.splice(0, this.pile.length)
-        console.log(this.player1.hand)
-        console.log(this.player2.hand)
-        console.log(this.pile)
     }
 
     play(player) {
