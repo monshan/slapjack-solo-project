@@ -19,8 +19,8 @@ class Game {
         this.player2.hand = this.pile.splice(0, this.pile.length)
     }
 
-    play(player) {
-        player.playCard()
+    turn(player) {
+        this.pile.unshift(player.playCard())
     }
 
     slap() {
