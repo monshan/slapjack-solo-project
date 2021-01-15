@@ -1,8 +1,8 @@
 class Game {
     constructor() {
         this.pile = deck
-        this.player1 = new Player (Date.now())
-        this.player2 = new Player (Date.now())
+        this.player1 = new Player ('Kayla')
+        this.player2 = new Player ('Scott')
         this.currentPlayer = this.player1
     }
 
@@ -21,14 +21,27 @@ class Game {
 
     turn(player) {
         this.pile.unshift(player.playCard())
+        if (this.currentPlayer === this.player1) {
+            this.currentPlayer = this.player2
+        } else {
+            this.currentPlayer = this.player1
+        }
     }
 
     slap() {
-        // if ()
+        if (this.pile[0].value === 'jack') {
+
+        } else if (this.pile[0].value === this.pile[1].value) {
+
+        } else if (this.pile[0].value === this.pile[2].value) {
+
+        } else {
+            console.log('Nice try loser')
+        }
     }
 
     win(player) {
-
+        player.wins++
     }
 
     newGame() {
