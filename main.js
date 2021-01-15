@@ -1,7 +1,7 @@
 var currentGame = new Game ()
 
 window.addEventListener('keydown', anyKeydown)
-
+window.addEventListener('load', currentGame.firstDeal())
 
 
 function anyKeydown (event) {
@@ -31,4 +31,3 @@ function isPlayer2Turn () {
         console.log(`Wait your turn!`)
     }
 }
-
