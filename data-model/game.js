@@ -6,15 +6,15 @@ class Game {
         this.currentPlayer = this.player1
     }
 
-    shuffle() {
-        for (let i = this.pile.length - 1; i > 0; i--) {
+    shuffle(cards) {
+        for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [this.pile[i], this.pile[j]] = [this.pile[j], this.pile[i]];
+            [cards[i], cards[j]] = [cards[j], cards[i]];
         }
     }
 
     firstDeal() {
-        this.shuffle()
+        this.shuffle(this.pile)
         this.player1.hand = this.pile.splice(0, 26)
         this.player2.hand = this.pile.splice(0, this.pile.length)
     }
