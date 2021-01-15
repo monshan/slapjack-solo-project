@@ -1,26 +1,36 @@
 class Game {
-    constructor(player1, player2) {
-        this.pile = []
-        this.currentPlayer = player1
+    constructor() {
+        this.pile = deck
+        this.player1 = new Player (Date.now())
+        this.player2 = new Player (Date.now())
+        this.currentPlayer = this.player1
     }
-    
+
     shuffle() {
-
+        for (let i = this.pile.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.pile[i], this.pile[j]] = [this.pile[j], this.pile[i]];
+        }
     }
 
-    deal() {
-
+    firstDeal() {
+        // shuffle(this.pile)
+        this.player1.hand = this.pile.splice(0, 26)
+        this.player2.hand = this.pile.splice(0, this.pile.length)
+        console.log(this.player1.hand)
+        console.log(this.player2.hand)
+        console.log(this.pile)
     }
 
-    play() {
-
+    play(player) {
+        player.playCard()
     }
 
     slap() {
-        if ()
+        // if ()
     }
 
-    win() {
+    win(player) {
 
     }
 
