@@ -20,9 +20,19 @@ class Game {
     }
 
     turn(player) {
+        if (!player.hand.length) {
+            for (var i = 0; i < this.pile.length; i++) {
+                player.hand.unshift(this.pile[i])
+            }
+            this.shuffle(player.hand)
+            this.pile.splice(0, this.pile.length)
+            console.log(`Pile has been added to your hand`)
+        }
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
-        this.currentPlayer = this.swapPlayer(player)
+        // this.currentPlayer = this.swapPlayer(player)
+        this.setCurrentPlayer(player)
+
     }
 
     swapPlayer(thatPlayer) {
@@ -32,15 +42,25 @@ class Game {
             return this.player1
         }
     }
+    // On slap, if the other players hand has no cards you win but a play with no cards cannot do a valid slap on a double or sandwhich
 
     slap(player) {
         if (this.pile[0].value === 'jack') {
-            this.validSlap(player)
+            if (!this.swapPlayer(player).hand.length) {
+                this.win(player)
+            } else {
+                this.validSlap(player)
+            }
         } else if (this.pile[0].value === this.pile[1].value) {
-            this.validSlap(player)
+            if (!player.hand.length) {
+                this.win(this.swapPlayer(player))
+            } else {
+                this.validSlap(player)
+            }
         } else if (this.pile[0].value === this.pile[2].value) {
             this.validSlap(player)
         } else {
+            // Set the rule for winning on a jack here
             console.log(`Nice try`)
             this.swapPlayer(player).hand.push(player.hand.shift())
             this.shuffle(this.swapPlayer(player).hand)
@@ -52,12 +72,23 @@ class Game {
         for (var i = 0; i < this.pile.length; i++) {
             player.hand.unshift(this.pile[i])
         }
+        this.shuffle(player.hand)
         this.pile.splice(0, this.pile.length)
-        this.currentPlayer = this.swapPlayer(player)
+        this.setCurrentPlayer(player)
+    }
+
+    setCurrentPlayer(player) {
+        if (!this.swapPlayer(player).hand.length) {
+            this.currentPlayer = player
+        } else {
+            this.currentPlayer = this.swapPlayer(player)
+        }
     }
 
     win(player) {
+        console.log(`Congrats ${player.name}, you win!`)
         player.wins++
+        currentGame = new Game ()
     }
 
     newGame() {
