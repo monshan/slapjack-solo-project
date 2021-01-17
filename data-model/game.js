@@ -19,13 +19,15 @@ class Game {
         this.player2.hand = this.pile.splice(0, this.pile.length)
     }
 
+    addPileToHand(player) {
+        this.pile.forEach((card) => player.hand.unshift(card))
+        this.pile.splice(0, this.pile.length)
+        this.shuffle(player.hand)
+    }
+
     turn(player) {
         if (!player.hand.length) {
-            for (var i = 0; i < this.pile.length; i++) {
-                player.hand.unshift(this.pile[i])
-            }
-            this.shuffle(player.hand)
-            this.pile.splice(0, this.pile.length)
+            this.addPileToHand(player)
             console.log(`Pile has been added to ${player.name}'s hand`)
         }
         this.pile.unshift(player.playCard())
@@ -53,9 +55,7 @@ class Game {
 
     validSlap(player) {
         console.log(`${player.name} had a good slap!`)
-        this.pile.forEach((card) => player.hand.unshift(card))
-        this.shuffle(player.hand)
-        this.pile.splice(0, this.pile.length)
+        this.addPileToHand(player)
         this.setCurrentPlayer(player)
     }
 
@@ -102,12 +102,3 @@ class Game {
         this.currentPlayer = this.swapPlayer(player)
     }
 }
-
-// A way to shuffle the deck
-// A way to keep track of the central pile of cards the players will add to
-// A way to deal the deck out to the players
-// A way to keep track of which player’s turn it currently is
-// A way for a player to deal a card into the middle pile
-// A way for players to attempt slapping the pile with varying outcomes (“legal” slaps are Jacks, doubles, and sandwiches - see the playthrough video for further explanation)
-// A way to update a player’s wins count
-// A way to reset the deck and players to play a new game when one is won
