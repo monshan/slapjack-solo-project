@@ -8,7 +8,7 @@ window.addEventListener('keydown', anyKeydown)
 
 
 function applyCover(element, card) {
-    element.style.src = url(`./assets/${card.suite}-${card.value}.png`)
+    element.src.innerHTML = `assets/${card.suite}-${card.value}.png`
 }
 
 applyCover(player1Hand, currentGame.player1.hand[0])
