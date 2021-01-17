@@ -53,17 +53,27 @@ class Game {
             }
         } else if (this.pile[0].value === this.pile[1].value) {
             if (!player.hand.length) {
+                console.log(`Nice try, but not a valid slap for you`)
                 this.win(this.swapPlayer(player))
             } else {
                 this.validSlap(player)
             }
         } else if (this.pile[0].value === this.pile[2].value) {
-            this.validSlap(player)
+            if (!player.hand.length) {
+                console.log(`Nice try, but not a valid slap for you`)
+                this.win(this.swapPlayer(player))
+            } else {
+                this.validSlap(player)
+            }
         } else {
-            // Set the rule for winning on a jack here
-            console.log(`Nice try`)
-            this.swapPlayer(player).hand.push(player.hand.shift())
-            this.shuffle(this.swapPlayer(player).hand)
+            if (!player.hand.length) {
+                console.log(`You just lost genius`)
+                this.win(this.swapPlayer(player))
+            } else {
+                console.log(`Nice try`)
+                this.swapPlayer(player).hand.push(player.hand.shift())
+                this.shuffle(this.swapPlayer(player).hand)
+            }
         }
     }
 
@@ -88,11 +98,13 @@ class Game {
     win(player) {
         console.log(`Congrats ${player.name}, you win!`)
         player.wins++
-        currentGame = new Game ()
+        this.newGame(currentGame)
+        console.log(currentGame)
     }
 
-    newGame() {
-
+    newGame(container) {
+        container = new Game ()
+        container.firstDeal()
     }
 }
 
