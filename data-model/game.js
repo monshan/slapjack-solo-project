@@ -26,7 +26,7 @@ class Game {
             }
             this.shuffle(player.hand)
             this.pile.splice(0, this.pile.length)
-            console.log(`Pile has been added to your hand`)
+            console.log(`Pile has been added to ${player.name}'s hand`)
         }
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
@@ -38,32 +38,36 @@ class Game {
     }
 
     slap(player) {
-        if (this.pile[0].value === 'jack') {
+        if (!this.pile.length) {
+            this.invalidSlap(player)
+        } else if (this.pile[0].value === 'jack') {
             !this.swapPlayer(player).hand.length ? this.formalWin(player) : this.validSlap(player)
         } else if (this.pile[0].value === this.pile[1].value) {
             this.winCondition(player)
         } else if (this.pile[0].value === this.pile[2].value) {
             this.winCondition(player)
         } else {
-            if (!player.hand.length) {
-                console.log(`You just lost genius`)
-                this.formalWin(this.swapPlayer(player))
-            } else {
-                console.log(`Nice try`)
-                this.swapPlayer(player).hand.push(player.hand.shift())
-                this.shuffle(this.swapPlayer(player).hand)
-            }
+            this.invalidSlap(player)
         }
     }
 
     validSlap(player) {
         console.log(`${player.name} had a good slap!`)
-        for (var i = 0; i < this.pile.length; i++) {
-            player.hand.unshift(this.pile[i])
-        }
+        this.pile.forEach((card) => player.hand.unshift(card))
         this.shuffle(player.hand)
         this.pile.splice(0, this.pile.length)
         this.setCurrentPlayer(player)
+    }
+
+    invalidSlap(player) {
+        if (!player.hand.length) {
+            console.log(`${player.name} loses due to invalid slap!`)
+            this.formalWin(this.swapPlayer(player))
+        } else {
+            console.log(`${player.name} made a bad slap, lose one card`)
+            this.swapPlayer(player).hand.push(player.hand.shift())
+            this.shuffle(this.swapPlayer(player).hand)
+        }
     }
 
     setCurrentPlayer(player) {
@@ -76,7 +80,7 @@ class Game {
 
     winCondition(player) {
         if (!player.hand.length) {
-            console.log(`Nice try, but not a valid slap for you`)
+            console.log(`This slap is invalid for ${player.name}, lose the game!`)
             this.formalWin(this.swapPlayer(player))
         } else {
             this.validSlap(player)
@@ -86,15 +90,16 @@ class Game {
     formalWin(player) {
         console.log(`Congrats ${player.name}, you win!`)
         player.wins++
-        this.newGame()
+        this.newGame(player)
     }
 
-    newGame() {
+    newGame(player) {
         this.player1.hand.forEach((card) => this.pile.push(card))
         this.player1.hand.splice(0, this.player1.hand.length)
         this.player2.hand.forEach((card) => this.pile.push(card))
         this.player2.hand.splice(0, this.player2.hand.length)
         this.firstDeal()
+        this.currentPlayer = this.swapPlayer(player)
     }
 }
 
