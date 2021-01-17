@@ -1,7 +1,7 @@
-var currentGame = new Game ()
+let currentGame = new Game ('Suho', 'Yoojung')
 
-window.addEventListener('keydown', anyKeydown)
 window.addEventListener('load', currentGame.firstDeal())
+window.addEventListener('keydown', anyKeydown)
 
 
 function anyKeydown (event) {

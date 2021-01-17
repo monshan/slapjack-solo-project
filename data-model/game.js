@@ -1,8 +1,8 @@
 class Game {
-    constructor() {
+    constructor(player1, player2) {
         this.pile = deck
-        this.player1 = new Player ('Kayla')
-        this.player2 = new Player ('Scott')
+        this.player1 = new Player (player1)
+        this.player2 = new Player (player2)
         this.currentPlayer = this.player1
     }
 
@@ -30,45 +30,24 @@ class Game {
         }
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
-        // this.currentPlayer = this.swapPlayer(player)
         this.setCurrentPlayer(player)
-
     }
 
     swapPlayer(thatPlayer) {
-        if (thatPlayer === this.player1) {
-            return this.player2
-        } else {
-            return this.player1
-        }
+        return thatPlayer === this.player1 ? this.player2 : this.player1
     }
-    // On slap, if the other players hand has no cards you win but a play with no cards cannot do a valid slap on a double or sandwhich
 
     slap(player) {
         if (this.pile[0].value === 'jack') {
-            if (!this.swapPlayer(player).hand.length) {
-                this.win(player)
-            } else {
-                this.validSlap(player)
-            }
+            !this.swapPlayer(player).hand.length ? this.formalWin(player) : this.validSlap(player)
         } else if (this.pile[0].value === this.pile[1].value) {
-            if (!player.hand.length) {
-                console.log(`Nice try, but not a valid slap for you`)
-                this.win(this.swapPlayer(player))
-            } else {
-                this.validSlap(player)
-            }
+            this.winCondition(player)
         } else if (this.pile[0].value === this.pile[2].value) {
-            if (!player.hand.length) {
-                console.log(`Nice try, but not a valid slap for you`)
-                this.win(this.swapPlayer(player))
-            } else {
-                this.validSlap(player)
-            }
+            this.winCondition(player)
         } else {
             if (!player.hand.length) {
                 console.log(`You just lost genius`)
-                this.win(this.swapPlayer(player))
+                this.formalWin(this.swapPlayer(player))
             } else {
                 console.log(`Nice try`)
                 this.swapPlayer(player).hand.push(player.hand.shift())
@@ -95,16 +74,24 @@ class Game {
         }
     }
 
-    win(player) {
-        console.log(`Congrats ${player.name}, you win!`)
-        player.wins++
-        this.newGame(currentGame)
-        console.log(currentGame)
+    winCondition(player) {
+        if (!player.hand.length) {
+            console.log(`Nice try, but not a valid slap for you`)
+            this.formalWin(this.swapPlayer(player))
+        } else {
+            this.validSlap(player)
+        }
     }
 
-    newGame(container) {
-        container = new Game ()
-        container.firstDeal()
+    formalWin(player) {
+        console.log(`Congrats ${player.name}, you win!`)
+        player.wins++
+        this.newGame()
+    }
+
+    newGame() {
+        currentGame = new Game ('Seojun', 'Jookyung')
+        currentGame.firstDeal()
     }
 }
 
