@@ -1,4 +1,4 @@
-let currentGame = new Game ('Suho', 'Yoojung')
+let currentGame = new Game ('Seojun', 'Jookyung')
 
 window.addEventListener('load', currentGame.firstDeal())
 window.addEventListener('keydown', anyKeydown)

@@ -90,8 +90,11 @@ class Game {
     }
 
     newGame() {
-        currentGame = new Game ('Seojun', 'Jookyung')
-        currentGame.firstDeal()
+        this.player1.hand.forEach((card) => this.pile.push(card))
+        this.player1.hand.splice(0, this.player1.hand.length)
+        this.player2.hand.forEach((card) => this.pile.push(card))
+        this.player2.hand.splice(0, this.player2.hand.length)
+        this.firstDeal()
     }
 }
 
