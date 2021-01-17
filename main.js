@@ -1,8 +1,17 @@
 let currentGame = new Game ('Seojun', 'Jookyung')
+var player1Hand = document.getElementById('player1Hand')
+var player2Hand = document.getElementById('player2Hand')
+var pile = document.getElementById('pile')
 
 window.addEventListener('load', currentGame.firstDeal())
 window.addEventListener('keydown', anyKeydown)
 
+
+function applyCover(element, card) {
+    element.style.src = url(`./assets/${card.suite}-${card.value}.png`)
+}
+
+applyCover(player1Hand, currentGame.player1.hand[0])
 
 function anyKeydown (event) {
     if (event.key === 'q') {

@@ -8,3 +8,20 @@
 body {
     font-family: 'Roboto Mono', monospace;
 }
+
+.arena {
+    display: flex;
+    justify-content: space-around;
+}
+
+.player-1-hand {
+
+}
+
+.pile {
+
+}
+
+.player-2-hand {
+
+}
