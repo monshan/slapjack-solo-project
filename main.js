@@ -4,16 +4,22 @@ var player2Hand = document.getElementById('player2Hand')
 var pile = document.getElementById('pile')
 
 window.addEventListener('load', currentGame.firstDeal())
-window.addEventListener('keydown', anyKeydown)
+window.addEventListener('keydown', playerCommand)
 
 
-function applyCover(element, card) {
-    element.src.innerHTML = `assets/${card.suite}-${card.value}.png`
+function numToString(num) {
+    if (num < 10) {
+        return '0' + num.toString()
+    } else {
+        return num.toString()
+    }
 }
 
-applyCover(player1Hand, currentGame.player1.hand[0])
+function updatePile() {
+    pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
+}
 
-function anyKeydown (event) {
+function playerCommand (event) {
     if (event.key === 'q') {
         isPlayer1Turn()
     } else if (event.key === 'f') {
@@ -22,6 +28,12 @@ function anyKeydown (event) {
         isPlayer2Turn()
     } else if (event.key === 'j') {
         currentGame.slap(currentGame.player2)
+    }
+    
+    if (!currentGame.pile.length) {
+        pile.src = ''
+    } else {
+        updatePile()
     }
 }
 
@@ -40,3 +52,4 @@ function isPlayer2Turn () {
         console.log(`Wait your turn!`)
     }
 }
+
