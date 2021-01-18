@@ -45,7 +45,13 @@ h1 {
     height: 85vh;
 }
 
-.arena > img {
+.arena-piles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
     max-height: 45vh;
 }
 

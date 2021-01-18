@@ -2,6 +2,9 @@ let currentGame = new Game ('Seojun', 'Jookyung')
 var player1Hand = document.getElementById('player1Hand')
 var player2Hand = document.getElementById('player2Hand')
 var pile = document.getElementById('pile')
+var player1Wins = document.getElementById('player1Wins')
+var player2Wins = document.getElementById('player2Wins')
+
 
 window.addEventListener('load', currentGame.firstDeal())
 window.addEventListener('keydown', playerCommand)
@@ -17,6 +20,11 @@ function numToString(num) {
 
 function updatePile() {
     pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
+}
+
+function updateWins() {
+    player1Wins.innerText = currentGame.player1.wins + ' Wins'
+    player2Wins.innerText = currentGame.player2.wins + ' Wins'
 }
 
 function playerCommand (event) {
