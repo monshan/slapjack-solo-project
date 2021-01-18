@@ -37,12 +37,8 @@ function playerCommand (event) {
     } else if (event.key === 'j') {
         currentGame.slap(currentGame.player2)
     }
-    
-    if (!currentGame.pile.length) {
-        pile.src = ''
-    } else {
-        updatePile()
-    }
+
+    !currentGame.pile.length ? pile.src = '' : updatePile()
 }
 
 function isPlayer1Turn () {

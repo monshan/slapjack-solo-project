@@ -55,14 +55,8 @@ img {
     max-height: 45vh;
 }
 
-/* .player-1-hand {
-    
+.controls {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: space-around;
 }
-
-.pile {
-
-}
-
-.player-2-hand {
-
-} */

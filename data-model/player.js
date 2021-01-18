@@ -10,6 +10,6 @@ class Player {
     }
 
     saveToStorage() {
-
+        localStorage.setItem('', JSON.stringify(this))
     }
 }
