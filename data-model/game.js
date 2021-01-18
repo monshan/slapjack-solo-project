@@ -102,3 +102,5 @@ class Game {
         this.currentPlayer = this.swapPlayer(player)
     }
 }
+
+// Though the newGame function works, may need to go back or use the main.js file to declare a new instance of a game that reflects the currentGame variable

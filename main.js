@@ -1,10 +1,33 @@
 let currentGame = new Game ('Seojun', 'Jookyung')
+var player1Hand = document.getElementById('player1Hand')
+var player2Hand = document.getElementById('player2Hand')
+var pile = document.getElementById('pile')
+var player1Wins = document.getElementById('player1Wins')
+var player2Wins = document.getElementById('player2Wins')
+
 
 window.addEventListener('load', currentGame.firstDeal())
-window.addEventListener('keydown', anyKeydown)
+window.addEventListener('keydown', playerCommand)
 
 
-function anyKeydown (event) {
+function numToString(num) {
+    if (num < 10) {
+        return '0' + num.toString()
+    } else {
+        return num.toString()
+    }
+}
+
+function updatePile() {
+    pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
+}
+
+function updateWins() {
+    player1Wins.innerText = currentGame.player1.wins + ' Wins'
+    player2Wins.innerText = currentGame.player2.wins + ' Wins'
+}
+
+function playerCommand (event) {
     if (event.key === 'q') {
         isPlayer1Turn()
     } else if (event.key === 'f') {
@@ -14,6 +37,8 @@ function anyKeydown (event) {
     } else if (event.key === 'j') {
         currentGame.slap(currentGame.player2)
     }
+
+    !currentGame.pile.length ? pile.src = '' : updatePile()
 }
 
 function isPlayer1Turn () {
@@ -31,3 +56,4 @@ function isPlayer2Turn () {
         console.log(`Wait your turn!`)
     }
 }
+

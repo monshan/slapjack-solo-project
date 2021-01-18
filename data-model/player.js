@@ -10,8 +10,6 @@ class Player {
     }
 
     saveToStorage() {
-
+        localStorage.setItem('', JSON.stringify(this))
     }
 }
-
-// Try giving it a name to further personalize?
