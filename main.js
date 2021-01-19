@@ -14,6 +14,7 @@ var player2ValidSlap = document.getElementById('player2ValidMess')
 var player2InvalidSlap = document.getElementById('player2InvalidMess')
 var player2WaitTurn = document.getElementById('player2WaitTurnMess')
 var player2AddPile = document.getElementById('player2AddPileMess')
+var currentPlayerSign = document.getElementById('currentPlayerSign')
 var winMess = document.getElementById('winMessage')
 
 
@@ -59,6 +60,7 @@ function loadPlayerInfo() {
     player2Name.innerText = currentGame.player2.name
     player1Wins.innerText = currentGame.player1.wins + ' Wins'
     player2Wins.innerText = currentGame.player2.wins + ' Wins'
+    currentPlayerSign.innerText = `${currentGame.currentPlayer.name}'s turn`
 }
 
 function playerCommand (event) {
@@ -72,6 +74,7 @@ function playerCommand (event) {
         currentGame.slap(currentGame.player2) ? flashMessage(player2ValidSlap) : flashMessage(player2InvalidSlap)
     }
     !currentGame.pile.length ? pile.src = '' : updatePile()
+    currentPlayerSign.innerText = `${currentGame.currentPlayer.name}'s turn`
     loadNewGame()
 }
 
@@ -101,8 +104,10 @@ function isPlayer2Turn () {
 
 function loadNewGame() {
     if (currentGame.gameWon) {
+        winMess.innerText = `Congradulations ${currentGame.winner.name}, you win!`
         flashMessage(winMess)
         loadPlayerInfo()
+        currentGame.winner = null
         currentGame.gameWon = false
     }
 }

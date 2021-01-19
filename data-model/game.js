@@ -4,6 +4,7 @@ class Game {
         this.player1 = new Player (player1)
         this.player2 = new Player (player2)
         this.currentPlayer = this.player1
+        this.winner = null
         this.gameWon = false
     }
 
@@ -99,8 +100,8 @@ class Game {
     }
 
     formalWin(player) {
-        console.log(`Congrats ${player.name}, you win!`)
         player.wins++
+        this.winner = player
         this.gameWon = true
         this.player1.hand.forEach((card) => this.pile.push(card))
         this.player1.hand.splice(0, this.player1.hand.length)

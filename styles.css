@@ -97,6 +97,11 @@ img {
 }
 
 .win-message {
+    opacity: 0;
+    position: fixed;
+    left: 32vw;
+    top: 35vh;
+    z-index: 1;
     font-size: xx-large;
     font-style: italic;
     padding: 25px;
