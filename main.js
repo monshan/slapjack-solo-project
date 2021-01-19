@@ -6,7 +6,15 @@ var player1Name = document.getElementById('player1Name')
 var player2Name = document.getElementById('player2Name')
 var player1Wins = document.getElementById('player1Wins')
 var player2Wins = document.getElementById('player2Wins')
-var player1invalidSlap = document.getElementById('player1InvalidMess')
+var player1ValidSlap = document.getElementById('player1ValidMess')
+var player1InvalidSlap = document.getElementById('player1InvalidMess')
+var player1WaitTurn = document.getElementById('player1WaitTurnMess')
+var player1AddPile = document.getElementById('player1AddPileMess')
+var player2ValidSlap = document.getElementById('player2ValidMess')
+var player2InvalidSlap = document.getElementById('player2InvalidMess')
+var player2WaitTurn = document.getElementById('player2WaitTurnMess')
+var player2AddPile = document.getElementById('player2AddPileMess')
+
 
 let currentGame = null
 
@@ -56,11 +64,11 @@ function playerCommand (event) {
     if (event.key === 'q') {
         isPlayer1Turn()
     } else if (event.key === 'f') {
-        currentGame.slap(currentGame.player1)
+        currentGame.slap(currentGame.player1) ? flashMessage(player1ValidSlap) : flashMessage(player1InvalidSlap)
     } else if (event.key === 'p') {
         isPlayer2Turn()
     } else if (event.key === 'j') {
-        currentGame.slap(currentGame.player2)
+        currentGame.slap(currentGame.player2) ? flashMessage(player2ValidSlap) : flashMessage(player2InvalidSlap)
     }
     !currentGame.pile.length ? pile.src = '' : updatePile()
     loadNewGame()
@@ -70,8 +78,7 @@ function isPlayer1Turn () {
     if (currentGame.currentPlayer === currentGame.player1) {
         currentGame.turn(currentGame.player1)
     } else {
-        flashMessage(player1invalidSlap)
-        console.log(`Wait your turn!`)
+        flashMessage(player1WaitTurn)
     }
 }
 
@@ -79,7 +86,7 @@ function isPlayer2Turn () {
     if (currentGame.currentPlayer === currentGame.player2) {
         currentGame.turn(currentGame.player2)
     } else {
-        console.log(`Wait your turn!`)
+        flashMessage(player2WaitTurn)
     }
 }
 
@@ -92,8 +99,8 @@ function loadNewGame() {
 
 function flashMessage(where) {
     where.animate([
-        { opacity: 0, easing: 'ease-in-out' },
+        { opacity: 0 },
         { opacity: 1 },
-        { opacity: 0 }
-    ], 2500)
+        { opacity: 0, easing: 'ease-out' }
+    ], 2000)
 }

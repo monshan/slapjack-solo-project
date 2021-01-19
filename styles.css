@@ -86,8 +86,8 @@ img {
 }
 
 .wait-turn {
-    background-color: palevioletred;
-    color: red;
+    background-color: red;
+    color: pink;
 }
 
 @keyframes flash {
