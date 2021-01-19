@@ -16,22 +16,18 @@ var jookyung = {
     name: 'Jjoo'
 }
 
-
-if (localStorage.length) {
-    var accessLocal1 = JSON.parse(localStorage.getItem(localStorage[0].name))
-    var accessLocal2 = JSON.parse(localStorage.getItem(localStorage[1].name))
-    currentGame = new Game (accessLocal1, accessLocal2)
-} else {
-    currentGame = new Game (seojun, jookyung)
-}
-
-
 window.addEventListener('load', start)
 window.addEventListener('keydown', playerCommand)
 
-
-
 function start() {
+    if (localStorage.length) {
+        var accessLocal1 = JSON.parse(localStorage.getItem(localStorage.key(1)))
+        var accessLocal2 = JSON.parse(localStorage.getItem(localStorage.key(0)))
+        currentGame = new Game (accessLocal1, accessLocal2)
+    } else {
+        currentGame = new Game (seojun, jookyung)
+    }
+    loadPlayerInfo()
     currentGame.firstDeal()
 }
 
@@ -64,8 +60,8 @@ function playerCommand (event) {
     } else if (event.key === 'j') {
         currentGame.slap(currentGame.player2)
     }
-
     !currentGame.pile.length ? pile.src = '' : updatePile()
+    loadNewGame()
 }
 
 function isPlayer1Turn () {
