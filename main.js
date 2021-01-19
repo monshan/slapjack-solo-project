@@ -1,14 +1,39 @@
-let currentGame = new Game ('Seojun', 'Jookyung')
+
 var player1Hand = document.getElementById('player1Hand')
 var player2Hand = document.getElementById('player2Hand')
 var pile = document.getElementById('pile')
+var player1Name = document.getElementById('player1Name')
+var player2Name = document.getElementById('player2Name')
 var player1Wins = document.getElementById('player1Wins')
 var player2Wins = document.getElementById('player2Wins')
+let currentGame = null
+
+var seojun = {
+    name: 'Seojun',
+}
+
+var jookyung = {
+    name: 'Jjoo'
+}
 
 
-window.addEventListener('load', currentGame.firstDeal())
+if (localStorage.length) {
+    var accessLocal1 = JSON.parse(localStorage.getItem(localStorage[0].name))
+    var accessLocal2 = JSON.parse(localStorage.getItem(localStorage[1].name))
+    currentGame = new Game (accessLocal1, accessLocal2)
+} else {
+    currentGame = new Game (seojun, jookyung)
+}
+
+
+window.addEventListener('load', start)
 window.addEventListener('keydown', playerCommand)
 
+
+
+function start() {
+    currentGame.firstDeal()
+}
 
 function numToString(num) {
     if (num < 10) {
@@ -22,7 +47,9 @@ function updatePile() {
     pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
 }
 
-function updateWins() {
+function loadPlayerInfo() {
+    player1Name.innerText = currentGame.player1.name
+    player2Name.innerText = currentGame.player2.name
     player1Wins.innerText = currentGame.player1.wins + ' Wins'
     player2Wins.innerText = currentGame.player2.wins + ' Wins'
 }
@@ -57,3 +84,9 @@ function isPlayer2Turn () {
     }
 }
 
+function loadNewGame() {
+    if (currentGame.gameWon) {
+        loadPlayerInfo()
+        currentGame.gameWon = false
+    }
+}
