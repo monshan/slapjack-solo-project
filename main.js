@@ -86,3 +86,7 @@ function loadNewGame() {
         currentGame.gameWon = false
     }
 }
+
+function flashMessage(where) {
+    where.style.animation = 'fade 2s linear forwards'
+}

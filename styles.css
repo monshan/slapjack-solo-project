@@ -47,6 +47,7 @@ h1 {
 
 .arena-piles {
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
 }
@@ -56,7 +57,35 @@ img {
 }
 
 .controls {
-    margin-top: 10vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.controls-wrapper {
+    width: 100%;
+}
+
+.message {
+    padding: 7px;
+    /* animation: flash 2.5s ease-in-out forwards; */
+}
+
+.valid-slap {
+    background-color: green;
+    color: greenyellow;
+}
+
+.invalid-slap {
+    background-color: yellow;
+    color:goldenrod;
+}
+
+.add-pile {
+    background-color: blue;
+    color: cyan;
+}
+
+@keyframes flash {
+    0%,100% { opacity: 0 }
+    50% { opacity: 1 }
 }

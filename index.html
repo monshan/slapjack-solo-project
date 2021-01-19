@@ -17,12 +17,29 @@
                         <p id="player1Name"></p>
                         <p id="player1Wins">0 Wins</p>
                     </section>
-                    <section>
+                    <section id="player1MessCent">
+                        <article class="message valid-slap" id="player1ValidMess">
+                            Nice slap! Take the pile!
+                        </article>
+                        <article class="message invalid-slap" id="player1InvalidMess">
+                            Sorry, you can't slap on that! Lose one card
+                        </article>
+                        <article class="message add-pile" id="player1AddPileMess">
+                            No more cards, but you can take the pile!
+                        </article>
+                    </section>
+                    <section class="controls-wrapper">
                         <div class="controls">
-                            <img src="assets/icons8-q-key-100.png">
-                            <img src="assets/icons8-f-key-100.png">
+                            <div>
+                                <img src="assets/icons8-q-key-100.png" class="keycap">
+                                <p>q to play a card</p>
+                            </div>
+                            <div>
+                                <img src="assets/icons8-f-key-100.png" class="keycap">
+                                <p>f to slap</p>
+                            </div>
                         </div>
-                        <p>q to play a card, f to slap</p>
+                        <!-- <p>q to play a card, f to slap</p> -->
                     </section>
                 </section>
                 <section class="arena-piles">
@@ -34,10 +51,13 @@
                         <p id="player2Name"></p>
                         <p id="player2Wins">0 Wins</p>
                     </section>
+                    <section id="player2MessCent">
+
+                    </section>
                     <section>
                         <div class="controls">
-                            <img src="assets/icons8-j-key-100.png">
-                            <img src="assets/icons8-p-key-100.png">
+                            <img src="assets/icons8-j-key-100.png" class="keycap">
+                            <img src="assets/icons8-p-key-100.png" class="keycap">
                         </div>
                         <p>p to play a card, j to slap</p>
                     </section>
