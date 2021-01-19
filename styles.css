@@ -67,7 +67,7 @@ img {
 
 .message {
     padding: 7px;
-    /* animation: flash 2.5s ease-in-out forwards; */
+    opacity: 0;
 }
 
 .valid-slap {
@@ -83,6 +83,11 @@ img {
 .add-pile {
     background-color: blue;
     color: cyan;
+}
+
+.wait-turn {
+    background-color: palevioletred;
+    color: red;
 }
 
 @keyframes flash {

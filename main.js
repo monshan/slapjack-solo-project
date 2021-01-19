@@ -6,6 +6,8 @@ var player1Name = document.getElementById('player1Name')
 var player2Name = document.getElementById('player2Name')
 var player1Wins = document.getElementById('player1Wins')
 var player2Wins = document.getElementById('player2Wins')
+var player1invalidSlap = document.getElementById('player1InvalidMess')
+
 let currentGame = null
 
 var seojun = {
@@ -68,6 +70,7 @@ function isPlayer1Turn () {
     if (currentGame.currentPlayer === currentGame.player1) {
         currentGame.turn(currentGame.player1)
     } else {
+        flashMessage(player1invalidSlap)
         console.log(`Wait your turn!`)
     }
 }
@@ -88,5 +91,9 @@ function loadNewGame() {
 }
 
 function flashMessage(where) {
-    where.style.animation = 'fade 2s linear forwards'
+    where.animate([
+        { opacity: 0, easing: 'ease-in-out' },
+        { opacity: 1 },
+        { opacity: 0 }
+    ], 2500)
 }
