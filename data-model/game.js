@@ -26,11 +26,15 @@ class Game {
         this.shuffle(player.hand)
     }
 
-    turn(player) {
-        if (!player.hand.length) {
-            this.addPileToHand(player)
-            console.log(`Pile has been added to ${player.name}'s hand`)
+    hasCards(pile) {
+        if (pile.length) {
+            return true
+        } else {
+            return false
         }
+    }
+
+    turn(player) {
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
         this.setCurrentPlayer(player)
@@ -47,15 +51,10 @@ class Game {
         } else if (this.pile[0].value === 'jack') {
             !this.swapPlayer(player).hand.length ? this.formalWin(player) : this.validSlap(player)
             return true
-            // if (!this.swapPlayer(player).hand.length) {
-            //     this.formalWin(player)
-            // } else {
-            //     this.validSlap(player)
-            // }
         } else if (this.pile[0].value === this.pile[1].value) {
-            this.winCondition(player)
+            return this.winCondition(player)
         } else if (this.pile[0].value === this.pile[2].value) {
-            this.winCondition(player)
+            return this.winCondition(player)
         } else {
             this.invalidSlap(player)
             return false
@@ -66,7 +65,7 @@ class Game {
         console.log(`${player.name} had a good slap!`)
         this.addPileToHand(player)
         this.setCurrentPlayer(player)
-        return true
+        // return true
     }
 
     invalidSlap(player) {
@@ -78,7 +77,6 @@ class Game {
             this.swapPlayer(player).hand.push(player.hand.shift())
             this.shuffle(this.swapPlayer(player).hand)
         }
-        return false
     }
 
     setCurrentPlayer(player) {

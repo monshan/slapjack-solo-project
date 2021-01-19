@@ -68,6 +68,7 @@ img {
 .message {
     padding: 7px;
     opacity: 0;
+    font-style: italic;
 }
 
 .valid-slap {
@@ -93,4 +94,12 @@ img {
 @keyframes flash {
     0%,100% { opacity: 0 }
     50% { opacity: 1 }
+}
+
+.win-message {
+    font-size: xx-large;
+    font-style: italic;
+    padding: 25px;
+    color: greenyellow;
+    background-color: green;
 }

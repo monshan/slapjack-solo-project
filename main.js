@@ -14,6 +14,7 @@ var player2ValidSlap = document.getElementById('player2ValidMess')
 var player2InvalidSlap = document.getElementById('player2InvalidMess')
 var player2WaitTurn = document.getElementById('player2WaitTurnMess')
 var player2AddPile = document.getElementById('player2AddPileMess')
+var winMess = document.getElementById('winMessage')
 
 
 let currentGame = null
@@ -76,6 +77,10 @@ function playerCommand (event) {
 
 function isPlayer1Turn () {
     if (currentGame.currentPlayer === currentGame.player1) {
+        if (!currentGame.hasCards(currentGame.player1.hand)) {
+            currentGame.addPileToHand(currentGame.player1)
+            flashMessage(player1AddPile)
+        }
         currentGame.turn(currentGame.player1)
     } else {
         flashMessage(player1WaitTurn)
@@ -84,6 +89,10 @@ function isPlayer1Turn () {
 
 function isPlayer2Turn () {
     if (currentGame.currentPlayer === currentGame.player2) {
+        if (!currentGame.hasCards(currentGame.player2.hand)) {
+            currentGame.addPileToHand(currentGame.player2)
+            flashMessage(player2AddPile)
+        }
         currentGame.turn(currentGame.player2)
     } else {
         flashMessage(player2WaitTurn)
@@ -92,6 +101,7 @@ function isPlayer2Turn () {
 
 function loadNewGame() {
     if (currentGame.gameWon) {
+        flashMessage(winMess)
         loadPlayerInfo()
         currentGame.gameWon = false
     }

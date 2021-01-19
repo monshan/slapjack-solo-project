@@ -46,6 +46,9 @@
                 </section>
                 <section class="arena-piles">
                     <img id="pile">
+                    <article>
+                        <p>'s turn</p>
+                    </article>
                 </section>
                 <section class="arena-piles">
                     <img src="assets/back.png" id="player2Hand">
@@ -67,16 +70,22 @@
                             Not your turn!
                         </article>
                     </section>
-                    <section>
+                    <section class="controls-wrapper">
                         <div class="controls">
-                            <img src="assets/icons8-j-key-100.png" class="keycap">
-                            <img src="assets/icons8-p-key-100.png" class="keycap">
+                            <div>
+                                <img src="assets/icons8-p-key-100.png" class="keycap">
+                                <p>p to play a card</p>
+                            </div>
+                            <div>
+                                <img src="assets/icons8-j-key-100.png" class="keycap">
+                                <p>j to slap</p>
+                            </div>
                         </div>
-                        <p>p to play a card, j to slap</p>
                     </section>
                 </section>
             </section>
         </main>
+        <p class="win-message" id="winMessage">Win message here</p>
     </body>
     <script src="data-model/deck.js"></script>
     <script src="data-model/player.js"></script>
