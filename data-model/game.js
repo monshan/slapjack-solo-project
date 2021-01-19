@@ -4,6 +4,7 @@ class Game {
         this.player1 = new Player (player1)
         this.player2 = new Player (player2)
         this.currentPlayer = this.player1
+        this.gameWon = false
     }
 
     shuffle(cards) {
@@ -90,14 +91,17 @@ class Game {
     formalWin(player) {
         console.log(`Congrats ${player.name}, you win!`)
         player.wins++
-        this.newGame(player)
-    }
-
-    newGame(player) {
+        this.gameWon = true
         this.player1.hand.forEach((card) => this.pile.push(card))
         this.player1.hand.splice(0, this.player1.hand.length)
         this.player2.hand.forEach((card) => this.pile.push(card))
         this.player2.hand.splice(0, this.player2.hand.length)
+        player.saveToStorage()
+        this.swapPlayer(player).saveToStorage()
+        this.newGame(player)
+    }
+
+    newGame(player) {
         this.firstDeal()
         this.currentPlayer = this.swapPlayer(player)
     }

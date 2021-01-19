@@ -1,7 +1,7 @@
 class Player {
-    constructor(name) {
-        this.name = name
-        this.wins = 0
+    constructor(player) {
+        this.name = player.name || 'placeholder'
+        this.wins = player.wins || 0
         this.hand = []
     }
 
@@ -10,6 +10,6 @@ class Player {
     }
 
     saveToStorage() {
-        localStorage.setItem('', JSON.stringify(this))
+        localStorage.setItem(`${this.name}`, JSON.stringify(this))
     }
 }
