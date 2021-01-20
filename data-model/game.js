@@ -8,6 +8,12 @@ class Game {
         this.gameWon = false
     }
 
+    addPileToHand(player) {
+        this.pile.forEach((card) => player.hand.unshift(card))
+        this.pile.splice(0, this.pile.length)
+        this.shuffle(player.hand)
+    }
+
     shuffle(cards) {
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -21,12 +27,6 @@ class Game {
         this.player2.hand = this.pile.splice(0, this.pile.length)
     }
 
-    addPileToHand(player) {
-        this.pile.forEach((card) => player.hand.unshift(card))
-        this.pile.splice(0, this.pile.length)
-        this.shuffle(player.hand)
-    }
-
     hasCards(pile) {
         if (pile.length) {
             return true
@@ -37,7 +37,6 @@ class Game {
 
     turn(player) {
         this.pile.unshift(player.playCard())
-        console.log(this.pile[0])
         this.setCurrentPlayer(player)
     }
 
@@ -62,23 +61,6 @@ class Game {
         }
     }
 
-    validSlap(player) {
-        console.log(`${player.name} had a good slap!`)
-        this.addPileToHand(player)
-        this.setCurrentPlayer(player)
-    }
-
-    invalidSlap(player) {
-        if (!player.hand.length) {
-            console.log(`${player.name} loses due to invalid slap!`)
-            this.formalWin(this.swapPlayer(player))
-        } else {
-            console.log(`${player.name} made a bad slap, lose one card`)
-            this.swapPlayer(player).hand.push(player.hand.shift())
-            this.shuffle(this.swapPlayer(player).hand)
-        }
-    }
-
     setCurrentPlayer(player) {
         if (!this.swapPlayer(player).hand.length) {
             this.currentPlayer = player
@@ -87,9 +69,22 @@ class Game {
         }
     }
 
+    validSlap(player) {
+        this.addPileToHand(player)
+        this.setCurrentPlayer(player)
+    }
+
+    invalidSlap(player) {
+        if (!player.hand.length) {
+            this.formalWin(this.swapPlayer(player))
+        } else {
+            this.swapPlayer(player).hand.push(player.hand.shift())
+            this.shuffle(this.swapPlayer(player).hand)
+        }
+    }
+
     winCondition(player) {
         if (!player.hand.length) {
-            console.log(`This slap is invalid for ${player.name}, lose the game!`)
             this.formalWin(this.swapPlayer(player))
             return false
         } else {
@@ -120,5 +115,3 @@ class Game {
         this.currentPlayer = this.swapPlayer(player)
     }
 }
-
-// Though the newGame function works, may need to go back or use the main.js file to declare a new instance of a game that reflects the currentGame variable
