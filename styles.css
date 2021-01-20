@@ -1,11 +1,4 @@
-/* Colors for the UI/UX
-{"Azure X 11 Web Color":"e8f1f3",
-    "Dark Cornflower Blue":"2e4771",
-    "Space Cadet":"1b305b",
-    "Space Cadet 2":"172045",
-    "Maximum Yellow Red":"e3b23c"}
-*/
-/* The following effectively removes the browser presets so we are able to manipulate css from ground 0 */
+/* Removal of browser presets and set overall text family, text color, and background color*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,10 +17,7 @@ time, mark, audio, video {
 	border: 0;
     font-size: 100%;
     font-family: 'Roboto Mono', monospace;
-	vertical-align: baseline;
-}
-
-body {
+    vertical-align: baseline;
     background-color: #222;
     color: #e8f1f3;
 }
@@ -37,6 +27,8 @@ h1 {
     margin: 15px;
     text-align: center;
 }
+
+/* Play area & arena */
 
 .arena {
     display: flex;
@@ -56,12 +48,16 @@ img {
     max-height: 45vh;
 }
 
+/* Current Player display */
+
 .current-player-sign {
     font-size: x-large;
     margin-top: 4vh;
     padding: 25px;
     border-top: #e8f1f3 solid 2px;
 }
+
+/* Player controls and displayed win data */
 
 .controls {
     display: flex;
@@ -86,6 +82,8 @@ img {
 .profile > p {
     text-align: center;
 }
+
+/* Player message center (hidden until animation plays due to opacity 0) */
 
 .message-center {
     margin-top: 1vh;
@@ -119,10 +117,7 @@ img {
     color: pink;
 }
 
-@keyframes flash {
-    0%,100% { opacity: 0 }
-    50% { opacity: 1 }
-}
+/* Win message */
 
 .win-message {
     opacity: 0;
@@ -136,5 +131,3 @@ img {
     color: greenyellow;
     background-color: green;
 }
-
-
