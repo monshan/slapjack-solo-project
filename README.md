@@ -52,4 +52,4 @@ Want to play slapjack but don't have any cards? Just use this web app and it has
 
 ## Primary Contributors
 
-Marika Shanahan: ![link to Marika's GitHub Profile] (https://github.com/monshan)
+Marika Shanahan: https://github.com/monshan
