@@ -1,10 +1,3 @@
-/* Colors for the UI/UX
-{"Azure X 11 Web Color":"e8f1f3",
-    "Dark Cornflower Blue":"2e4771",
-    "Space Cadet":"1b305b",
-    "Space Cadet 2":"172045",
-    "Maximum Yellow Red":"e3b23c"}
-*/
 /* Removal of browser presets and set overall text family, text color, and background color*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -55,7 +48,7 @@ img {
     max-height: 45vh;
 }
 
-/* Central pile */
+/* Current Player display */
 
 .current-player-sign {
     font-size: x-large;
@@ -64,7 +57,7 @@ img {
     border-top: #e8f1f3 solid 2px;
 }
 
-/* Player controls, player 1 & 2 piles/hands */
+/* Player controls and displayed win data */
 
 .controls {
     display: flex;
@@ -137,11 +130,4 @@ img {
     padding: 25px;
     color: greenyellow;
     background-color: green;
-}
-
-/* Flash Message animation */
-
-@keyframes flash {
-    0%,100% { opacity: 0 }
-    50% { opacity: 1 }
 }
