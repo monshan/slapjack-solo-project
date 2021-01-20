@@ -19,24 +19,30 @@ Want to play slapjack but don't have any cards? Just use this web app and it has
     - When a Jack is revealed, the player who is out of cards can slap it. The central pile is then their new hand, the game continues as normal.
     - If however, the player who is out of cards slaps something that is not a Jack, or if the player who still has cards slaps the Jack first, then the player who is out of cards loses and the game is over!
     - Doubles and Sandwiches are not valid when one player is completely out of cards - in this case, only a Jack can save them!
-    The only way the player who still has cards can win is by slapping the Jack before the player without cards left does
+    - The only way the player who still has cards can win is by slapping the Jack before the player without cards left does
 
 ## How it Works
+
 
 - Controls are listed at the bottom of the window on either side for each player, but player 1 can press the 'q' key to play a card and the 'f' key to slap and player 2 can press the 'p' key to play a card and the 'j' key to slap
 - On loading of the window, a new game will start with a player 1 on the left and player 2 on the right, a standard deck of 52 cards will be be shuffled and dealt evenly between the 2 players
 - Whomever's turn it is can be found in the center column below the central pile, regardless of if there are cards in the central pile (player 1 will always start a new game)
 - If it is the current player's turn, they can play a card from the top of their deck which will appear in the central pile face up
-<!-- insert basic gif here -->
+
+![](https://media.giphy.com/media/CPO7B5GhQcwpJa10hz/giphy.gif)
 - If a player attempts to play a card when it is not their turn, a message will flash below their deck that informs them it is not their turn and they cannot play a card
-<!-- insert not your turn error here -->
+
+![](https://media.giphy.com/media/sHV8Jlnu2bMCZ9ZhhD/giphy.gif)
 - If a player makes a valid slap a message will flash below their deck and the entire central pile will be added to their hand. Their hand will be shuffled and it will be the opposite player's turn
-<!-- insert valid slap here -->
+
+![](https://media.giphy.com/media/4dLb9bDCTWKQq7L0Ns/giphy.gif)
 - If a player makes an invalid slap, a message will flash below their deck and the player will lose one card that will be added to the opposite player's hand
-<!-- insert invalid slap here -->
+
+![](https://media.giphy.com/media/rsE8VVatV6X2ENCMvf/giphy.gif)
 - If the current player runs out of cards after the opposite player, a message will flash below their deck and the entire central pile will be shuffled and added to their hand
 - A player can win if they slap on a jack while the opposite player has no remaining cards. Upon winning, a message will flash over the gameplay area and the amount of wins under their hand will be updated and automatically saved to local storage. A new game will start by returning all cards to the central pile, shuffling, and dealing again evenly between the players
-<!-- insert win message here -->
+
+![](https://media.giphy.com/media/hubDPhmxNV0R5oMpoY/giphy.gif)
 
 ## Technologies Implemented:
 
@@ -46,4 +52,4 @@ Want to play slapjack but don't have any cards? Just use this web app and it has
 
 ## Primary Contributors
 
-- Marika Shanahan: [link to Marika's GitHub Profile] (https://github.com/monshan)
+Marika Shanahan: ![link to Marika's GitHub Profile] (https://github.com/monshan)
