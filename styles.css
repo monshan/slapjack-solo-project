@@ -56,19 +56,47 @@ img {
     max-height: 45vh;
 }
 
+.current-player-sign {
+    font-size: x-large;
+    margin-top: 4vh;
+    padding: 25px;
+    border-top: #e8f1f3 solid 2px;
+}
+
 .controls {
     display: flex;
     justify-content: space-between;
 }
 
 .controls-wrapper {
+    margin-top: 1vh;
     width: 100%;
+}
+
+.single-instruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile {
+    margin-top: 1vh;
+}
+
+.profile > p {
+    text-align: center;
+}
+
+.message-center {
+    margin-top: 1vh;
 }
 
 .message {
     padding: 7px;
     opacity: 0;
     font-style: italic;
+    text-align: center;
+    margin:10px;
 }
 
 .valid-slap {
@@ -108,3 +136,5 @@ img {
     color: greenyellow;
     background-color: green;
 }
+
+

@@ -66,7 +66,6 @@ class Game {
         console.log(`${player.name} had a good slap!`)
         this.addPileToHand(player)
         this.setCurrentPlayer(player)
-        // return true
     }
 
     invalidSlap(player) {
@@ -103,13 +102,17 @@ class Game {
         player.wins++
         this.winner = player
         this.gameWon = true
+        this.returnHands()
+        player.saveToStorage()
+        this.swapPlayer(player).saveToStorage()
+        this.newGame(player)
+    }
+
+    returnHands() {
         this.player1.hand.forEach((card) => this.pile.push(card))
         this.player1.hand.splice(0, this.player1.hand.length)
         this.player2.hand.forEach((card) => this.pile.push(card))
         this.player2.hand.splice(0, this.player2.hand.length)
-        player.saveToStorage()
-        this.swapPlayer(player).saveToStorage()
-        this.newGame(player)
     }
 
     newGame(player) {

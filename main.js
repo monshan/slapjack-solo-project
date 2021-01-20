@@ -1,15 +1,14 @@
-
 var player1Hand = document.getElementById('player1Hand')
 var player2Hand = document.getElementById('player2Hand')
 var pile = document.getElementById('pile')
 var player1Name = document.getElementById('player1Name')
-var player2Name = document.getElementById('player2Name')
 var player1Wins = document.getElementById('player1Wins')
-var player2Wins = document.getElementById('player2Wins')
 var player1ValidSlap = document.getElementById('player1ValidMess')
 var player1InvalidSlap = document.getElementById('player1InvalidMess')
 var player1WaitTurn = document.getElementById('player1WaitTurnMess')
 var player1AddPile = document.getElementById('player1AddPileMess')
+var player2Name = document.getElementById('player2Name')
+var player2Wins = document.getElementById('player2Wins')
 var player2ValidSlap = document.getElementById('player2ValidMess')
 var player2InvalidSlap = document.getElementById('player2InvalidMess')
 var player2WaitTurn = document.getElementById('player2WaitTurnMess')
@@ -17,16 +16,7 @@ var player2AddPile = document.getElementById('player2AddPileMess')
 var currentPlayerSign = document.getElementById('currentPlayerSign')
 var winMess = document.getElementById('winMessage')
 
-
 let currentGame = null
-
-var seojun = {
-    name: 'Seojun',
-}
-
-var jookyung = {
-    name: 'Jjoo'
-}
 
 window.addEventListener('load', start)
 window.addEventListener('keydown', playerCommand)
@@ -37,7 +27,7 @@ function start() {
         var accessLocal2 = JSON.parse(localStorage.getItem(localStorage.key(0)))
         currentGame = new Game (accessLocal1, accessLocal2)
     } else {
-        currentGame = new Game (seojun, jookyung)
+        currentGame = new Game ({name: 'Player 1'}, {name: 'Player 2'})
     }
     loadPlayerInfo()
     currentGame.firstDeal()
@@ -52,7 +42,13 @@ function numToString(num) {
 }
 
 function updatePile() {
-    pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
+    if (!currentGame.pile.length) {
+        pile.alt = ''
+        pile.src = ''
+    } else {
+        pile.alt = `${numToString(currentGame.pile[0].value)} of ${currentGame.pile[0].suite} cardface`
+        pile.src = `assets/${currentGame.pile[0].suite}-${numToString(currentGame.pile[0].value)}.png`
+    }
 }
 
 function loadPlayerInfo() {
@@ -73,7 +69,7 @@ function playerCommand (event) {
     } else if (event.key === 'j') {
         currentGame.slap(currentGame.player2) ? flashMessage(player2ValidSlap) : flashMessage(player2InvalidSlap)
     }
-    !currentGame.pile.length ? pile.src = '' : updatePile()
+    updatePile()
     currentPlayerSign.innerText = `${currentGame.currentPlayer.name}'s turn`
     loadNewGame()
 }
