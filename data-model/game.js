@@ -4,6 +4,7 @@ class Game {
         this.player1 = new Player (player1)
         this.player2 = new Player (player2)
         this.currentPlayer = this.player1
+        this.winner = null
         this.gameWon = false
     }
 
@@ -26,11 +27,15 @@ class Game {
         this.shuffle(player.hand)
     }
 
-    turn(player) {
-        if (!player.hand.length) {
-            this.addPileToHand(player)
-            console.log(`Pile has been added to ${player.name}'s hand`)
+    hasCards(pile) {
+        if (pile.length) {
+            return true
+        } else {
+            return false
         }
+    }
+
+    turn(player) {
         this.pile.unshift(player.playCard())
         console.log(this.pile[0])
         this.setCurrentPlayer(player)
@@ -43,14 +48,17 @@ class Game {
     slap(player) {
         if (!this.pile.length) {
             this.invalidSlap(player)
+            return false
         } else if (this.pile[0].value === 'jack') {
             !this.swapPlayer(player).hand.length ? this.formalWin(player) : this.validSlap(player)
+            return true
         } else if (this.pile[0].value === this.pile[1].value) {
-            this.winCondition(player)
+            return this.winCondition(player)
         } else if (this.pile[0].value === this.pile[2].value) {
-            this.winCondition(player)
+            return this.winCondition(player)
         } else {
             this.invalidSlap(player)
+            return false
         }
     }
 
@@ -83,22 +91,28 @@ class Game {
         if (!player.hand.length) {
             console.log(`This slap is invalid for ${player.name}, lose the game!`)
             this.formalWin(this.swapPlayer(player))
+            return false
         } else {
             this.validSlap(player)
+            return true
         }
     }
 
     formalWin(player) {
-        console.log(`Congrats ${player.name}, you win!`)
         player.wins++
+        this.winner = player
         this.gameWon = true
+        this.returnHands()
+        player.saveToStorage()
+        this.swapPlayer(player).saveToStorage()
+        this.newGame(player)
+    }
+
+    returnHands() {
         this.player1.hand.forEach((card) => this.pile.push(card))
         this.player1.hand.splice(0, this.player1.hand.length)
         this.player2.hand.forEach((card) => this.pile.push(card))
         this.player2.hand.splice(0, this.player2.hand.length)
-        player.saveToStorage()
-        this.swapPlayer(player).saveToStorage()
-        this.newGame(player)
     }
 
     newGame(player) {

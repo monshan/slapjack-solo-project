@@ -47,6 +47,7 @@ h1 {
 
 .arena-piles {
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
 }
@@ -55,8 +56,85 @@ img {
     max-height: 45vh;
 }
 
-.controls {
-    margin-top: 10vh;
-    display: flex;
-    justify-content: space-around;
+.current-player-sign {
+    font-size: x-large;
+    margin-top: 4vh;
+    padding: 25px;
+    border-top: #e8f1f3 solid 2px;
 }
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls-wrapper {
+    margin-top: 1vh;
+    width: 100%;
+}
+
+.single-instruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile {
+    margin-top: 1vh;
+}
+
+.profile > p {
+    text-align: center;
+}
+
+.message-center {
+    margin-top: 1vh;
+}
+
+.message {
+    padding: 7px;
+    opacity: 0;
+    font-style: italic;
+    text-align: center;
+    margin:10px;
+}
+
+.valid-slap {
+    background-color: green;
+    color: greenyellow;
+}
+
+.invalid-slap {
+    background-color: yellow;
+    color:goldenrod;
+}
+
+.add-pile {
+    background-color: blue;
+    color: cyan;
+}
+
+.wait-turn {
+    background-color: red;
+    color: pink;
+}
+
+@keyframes flash {
+    0%,100% { opacity: 0 }
+    50% { opacity: 1 }
+}
+
+.win-message {
+    opacity: 0;
+    position: fixed;
+    left: 32vw;
+    top: 35vh;
+    z-index: 1;
+    font-size: xx-large;
+    font-style: italic;
+    padding: 25px;
+    color: greenyellow;
+    background-color: green;
+}
+
+

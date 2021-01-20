@@ -13,37 +13,79 @@
             <section class="arena">
                 <section class="arena-piles">
                     <img src="assets/back.png" id="player1Hand">
-                    <section id="player1Info">
+                    <section class="profile" id="player1Info">
                         <p id="player1Name"></p>
                         <p id="player1Wins">0 Wins</p>
                     </section>
-                    <section>
+                    <section class="message-center" id="player1MessCent">
+                        <article class="message valid-slap" id="player1ValidMess">
+                            Nice slap! Take the pile!
+                        </article>
+                        <article class="message invalid-slap" id="player1InvalidMess">
+                            Sorry, you can't slap on that! Lose one card
+                        </article>
+                        <article class="message add-pile" id="player1AddPileMess">
+                            No more cards, but you can take the pile!
+                        </article>
+                        <article class="message wait-turn" id="player1WaitTurnMess">
+                            Not your turn!
+                        </article>
+                    </section>
+                    <section class="controls-wrapper">
                         <div class="controls">
-                            <img src="assets/icons8-q-key-100.png">
-                            <img src="assets/icons8-f-key-100.png">
+                            <div class="single-instruction">
+                                <img src="assets/icons8-q-key-100.png" class="keycap">
+                                <p>q to play a card</p>
+                            </div>
+                            <div class="single-instruction">
+                                <img src="assets/icons8-f-key-100.png" class="keycap">
+                                <p>f to slap</p>
+                            </div>
                         </div>
-                        <p>q to play a card, f to slap</p>
                     </section>
                 </section>
                 <section class="arena-piles">
                     <img id="pile">
+                    <article>
+                        <p class="current-player-sign" id="currentPlayerSign"></p>
+                    </article>
                 </section>
                 <section class="arena-piles">
                     <img src="assets/back.png" id="player2Hand">
-                    <section id="player2Info">
+                    <section class="profile" id="player2Info">
                         <p id="player2Name"></p>
                         <p id="player2Wins">0 Wins</p>
                     </section>
-                    <section>
+                    <section class="message-center" id="player2MessCent">
+                        <article class="message valid-slap" id="player2ValidMess">
+                            Nice slap! Take the pile!
+                        </article>
+                        <article class="message invalid-slap" id="player2InvalidMess">
+                            Sorry, you can't slap on that! Lose one card
+                        </article>
+                        <article class="message add-pile" id="player2AddPileMess">
+                            No more cards, but you can take the pile!
+                        </article>
+                        <article class="message wait-turn" id="player2WaitTurnMess">
+                            Not your turn!
+                        </article>
+                    </section>
+                    <section class="controls-wrapper">
                         <div class="controls">
-                            <img src="assets/icons8-j-key-100.png">
-                            <img src="assets/icons8-p-key-100.png">
+                            <div class="single-instruction">
+                                <img src="assets/icons8-j-key-100.png" class="keycap">
+                                <p>j to slap</p>
+                            </div>
+                            <div class="single-instruction">
+                                <img src="assets/icons8-p-key-100.png" class="keycap">
+                                <p>p to play a card</p>
+                            </div>
                         </div>
-                        <p>p to play a card, j to slap</p>
                     </section>
                 </section>
             </section>
         </main>
+        <p class="win-message" id="winMessage"></p>
     </body>
     <script src="data-model/deck.js"></script>
     <script src="data-model/player.js"></script>
